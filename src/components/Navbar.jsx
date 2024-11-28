@@ -9,7 +9,7 @@ const Navbar = () => {
     const isAdmin = user?.role === 'ADMIN';
 
     return (
-        <nav className="flex w-screen h-20 fixed justify-between items-center py-4 px-8">
+        <nav className="flex w-screen h-20 fixed justify-between items-center py-4 px-8 z-[999] bg-white ">
             <Link to="/">
                 <h1 className="text-4xl text-indigo-600 font-bold hover:text-indigo-500">Libray</h1>
             </Link>

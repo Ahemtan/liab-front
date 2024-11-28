@@ -23,7 +23,7 @@ const App = () => {
       <Routes >
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/dashboard" element={user?.role === "ADMIN" ? <Dashboard /> : <Navigate to={"/"} />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
         <Route path="/signin" element={!user ? <SignInPage /> : <Navigate to={"/"} />} />
         <Route path="/signup" element={!user ? <SignUpPage /> : <Navigate to={"/"} />} />
