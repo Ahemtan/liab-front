@@ -8,6 +8,7 @@ import Layout from './components/Layout.jsx'
 import { Toaster } from 'react-hot-toast'
 import { useUserStore } from './stores/useUserStore.js'
 import Dashboard from './pages/DashboardPage.jsx'
+import BooksPage from './pages/BooksPage.jsx'
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/books" element={<BooksPage />} />
         </Route>
         <Route path="/signin" element={!user ? <SignInPage /> : <Navigate to={"/"} />} />
         <Route path="/signup" element={!user ? <SignUpPage /> : <Navigate to={"/"} />} />

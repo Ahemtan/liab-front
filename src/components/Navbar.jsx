@@ -1,34 +1,54 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useUserStore } from '../stores/useUserStore';
-import MenuItem from './ui/MenuItem';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useUserStore } from "../stores/useUserStore";
+import MenuItem from "./ui/MenuItem";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
     const { user, logout } = useUserStore();
-    const isAdmin = user?.role === 'ADMIN';
+    const isAdmin = user?.role === "ADMIN";
 
     return (
         <nav className="flex w-screen h-20 fixed justify-between items-center py-4 px-8 z-[999] bg-white ">
             <Link to="/">
-                <h1 className="text-4xl text-indigo-600 font-bold hover:text-indigo-500">Libray</h1>
+                <h1 className="text-4xl text-indigo-600 font-bold hover:text-indigo-500">
+                    Libray
+                </h1>
             </Link>
+
+            {
+                isAdmin ?
+                    <div className="flex gap-8">
+                        <Link to={"/dashboard"}>Dashboard</Link>
+                        <Link to={"/dashboard/books"}>All Books</Link>
+                    </div>
+
+                    :
+
+                    <div className="flex gap-8">
+                        <Link to={"/dashboard"}>Home</Link>
+                    </div>
+            }
 
             <div className="relative">
                 <div className="inline-flex items-center overflow-hidden rounded-md border bg-white">
-
-                    {
-                        user && <a
+                    {user && (
+                        <a
                             href="#"
                             className="border-e px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-700"
                         >
                             {user?.name}
                         </a>
-                    }
+                    )}
 
-
-                    {!user ? <Link className='inline-block rounded border border-indigo-600 px-12 py-3 text-sm font-medium text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500' to="/signin">Login</Link>
-                        :
+                    {!user ? (
+                        <Link
+                            className="inline-block rounded border border-indigo-600 px-12 py-3 text-sm font-medium text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
+                            to="/signin"
+                        >
+                            Login
+                        </Link>
+                    ) : (
                         <button
                             onClick={() => setOpen((prev) => !prev)}
                             className="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700"
@@ -47,9 +67,7 @@ const Navbar = () => {
                                 />
                             </svg>
                         </button>
-                    }
-
-
+                    )}
                 </div>
 
                 {open && user && (
